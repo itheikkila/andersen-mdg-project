@@ -32,7 +32,7 @@ The dataset was extracted from the DataCo Smart Supply Chain database and normal
 **The Business Risk:** Missing geographic metadata (like City or State) prevents automated tax calculations and regional logistical routing. 
 **The Solution:** A profiling query that aggregates `NULL` and blank values across structural fields to generate an executive "Completeness Score," allowing the governance team to track remediation progress over time.
 
-![Metadata Completeness Score Results](Structural_Completeness_Score.png)
+![Metadata Completeness Score Results](Structural_Completeness_Score_with_Error.png)
 
 
 ## 🚀 Technical Stack
