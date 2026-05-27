@@ -1,6 +1,40 @@
 -- Target Table 1: Dim_Products (Product Master Data)
+
+CREATE TABLE Dim_Products AS
+SELECT DISTINCT
+    "Product Card Id" AS Product_ID,
+    "Product Name" AS Product_Name,
+    "Category Id" AS Category_ID,
+    "Category Name" AS Category_Name,
+    "Product Price" AS Standard_Price
+FROM STG_DataCo_Raw
+WHERE "Product Card Id" IS NOT NULL;
+
 -- Target Table 2: Dim_Customers (Customer Master Data)
+
+CREATE TABLE Dim_Customers AS
+SELECT DISTINCT
+    "Customer Id" AS Customer_ID,
+    "Customer Fname" AS First_Name,
+    "Customer Lname" AS Last_Name,
+    "Customer City" AS City,
+    "Customer State" AS State,
+    "Customer Segment" AS Segment
+FROM STG_DataCo_Raw
+WHERE "Customer Id" IS NOT NULL;
+
 -- Target Table 3: Fact_Orders (Transactional Ledger)
+
+CREATE TABLE Fact_Orders AS
+SELECT
+    "Order Id" AS Order_ID,
+    "Order Item Cardprod Id" AS Product_ID, -- Links to Dim_Products
+    "Customer Id" AS Customer_ID,           -- Links to Dim_Customers
+    "order date (DateOrders)" AS Order_Date,
+    "Order Item Quantity" AS Quantity,
+    "Sales" AS Total_Sales,
+    "Order Status" AS Order_Status
+FROM STG_DataCo_Raw;
 
 /* ============================================================================
    PROJECT: Master Data Governance - Supply Chain Anomaly Detection
